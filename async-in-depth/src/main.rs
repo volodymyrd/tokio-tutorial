@@ -1,8 +1,8 @@
 mod own_future;
 
+use crate::own_future::Delay;
 use std::time::{Duration, Instant};
 use tokio::net::TcpStream;
-use crate::own_future::Delay;
 
 #[tokio::main]
 async fn main() {
