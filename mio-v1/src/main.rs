@@ -1,7 +1,8 @@
 use mio::{Events, Poll};
+use std::error::Error;
 use std::time::Duration;
 
-fn main() -> std::io::Result<()> {
+fn main() -> Result<(), Box<dyn Error>> {
     // Create a Poll instance
     let mut poll = Poll::new()?;
 
