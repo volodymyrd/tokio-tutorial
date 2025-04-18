@@ -37,7 +37,7 @@ fn main() -> Result<(), Box<dyn Error>> {
             if event.token() == CLIENT && event.is_writable() {
                 // Fix 2 check take_error().
                 if let Some(e) = stream.take_error()? {
-                    println!("❌ Connection failed: {}, waiting...", e);
+                    println!("❌ Connection failed: {}. Exiting", e);
                 } else {
                     println!(
                         "✅ Client successfully connected from {}!",
