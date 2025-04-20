@@ -1,0 +1,15 @@
+[package]
+name = "mio-v3"
+version = "0.1.0"
+edition = "2024"
+
+[[bin]]
+name = "server"
+path = "src/bin/server.rs"
+
+[[bin]]
+name = "client"
+path = "src/bin/client.rs"
+
+[dependencies]
+mio = { version = "0.8", features = ["os-poll", "net"] }
