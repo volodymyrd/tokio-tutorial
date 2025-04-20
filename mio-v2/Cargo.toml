@@ -16,4 +16,4 @@ name = "client-with-retry"
 path = "src/bin/client-with-retry.rs"
 
 [dependencies]
-mio = { version = "0.8", features = ["os-poll", "net"] }
+mio = { version = "1", features = ["os-poll", "net"] }
