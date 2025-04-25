@@ -3,7 +3,7 @@ use crate::response::{Response, ResponseStatus};
 use std::cell::RefCell;
 use tracing::{Level, event};
 
-fn credentials_look_up(username: &str) -> Option<&str> {
+fn credentials_look_up(username: &str) -> Option<&'static str> {
     match username {
         "user1" => Some("pass1"),
         "user2" => Some("pass2"),
@@ -30,16 +30,19 @@ impl Service {
                 status: ResponseStatus::SuccessAlreadyLoggedIn,
             };
         }
-        if let Some(password) = credentials_look_up(request.username()) {
-            if password == request.password() {
-                LOGIN_CONTEXT.set(Some(request.username().to_string()));
-                return Response {
+        match credentials_look_up(request.username()) {
+            Some(expected_password) if expected_password == request.password() => {
+                LOGIN_CONTEXT.with(|ctx| {
+                    *ctx.borrow_mut() = Some(request.username().to_string());
+                });
+
+                Response {
                     status: ResponseStatus::Success,
-                };
+                }
             }
-        }
-        Response {
-            status: ResponseStatus::AuthError,
+            _ => Response {
+                status: ResponseStatus::AuthError,
+            },
         }
     }
 }
