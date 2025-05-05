@@ -10,6 +10,7 @@ fn credentials_look_up(username: &str) -> Option<&'static str> {
         _ => None,
     }
 }
+
 thread_local! {
     static LOGIN_CONTEXT: RefCell<Option<String>> = const { RefCell::new(None) };
 }
