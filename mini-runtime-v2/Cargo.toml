@@ -1,0 +1,9 @@
+[package]
+name = "mini-runtime-v2"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+futures = { version = "0.3", features = ["async-await"] }
+loom = "0.7"
+mio = { version = "1", features = ["os-poll", "net"] }
