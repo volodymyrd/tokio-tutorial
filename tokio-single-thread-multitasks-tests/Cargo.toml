@@ -1,0 +1,16 @@
+[package]
+name = "tokio-single-thread-multitasks-tests"
+version = "0.1.0"
+edition = "2024"
+
+[[bin]]
+name = "main_with_macro"
+path = "src/bin/main_with_macro.rs"
+
+[[bin]]
+name = "main_with_builder"
+path = "src/bin/main_with_builder.rs"
+
+[dependencies]
+futures = "0.3"
+tokio = { version = "1", features = ["full"] }
