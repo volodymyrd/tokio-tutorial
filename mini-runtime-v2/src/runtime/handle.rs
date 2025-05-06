@@ -1,4 +1,4 @@
-use crate::runtime::{context, scheduler};
+use crate::runtime::scheduler;
 use crate::util::error::{CONTEXT_MISSING_ERROR, THREAD_LOCAL_DESTROYED_ERROR};
 use std::{error, fmt};
 

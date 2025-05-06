@@ -1,3 +1,6 @@
+mod rt;
+pub(crate) use rt::RngSeedGenerator;
+
 /// A seed for random number generation.
 ///
 /// In order to make certain functions within a runtime deterministic, a seed
@@ -59,6 +62,7 @@ impl FastRand {
         }
     }
 
+    #[allow(dead_code)]
     pub(crate) fn fastrand_n(&mut self, n: u32) -> u32 {
         // This is similar to fastrand() % n, but faster.
         // See https://lemire.me/blog/2016/06/27/a-fast-alternative-to-the-modulo-reduction/
