@@ -3,7 +3,7 @@ use crate::scoped::Scoped;
 
 // --- Simple Use Case: Request ID Propagation ---
 
-//This example shows how Scoped<T> allows you to implicitly pass context (the request ID)
+// This example shows how Scoped<T> allows you to implicitly pass context (the request ID)
 // down a call stack (main -> set -> log, main -> set -> process_step -> log)
 // without modifying the function signatures of log or process_step.
 // The scoping ensures the context is only active when needed and automatically cleaned up.
@@ -11,7 +11,7 @@ use crate::scoped::Scoped;
 // Define a thread-local static using the Scoped struct.
 // This will hold an optional u64 representing the current request ID.
 thread_local! {
-    static CURRENT_REQUEST_ID: Scoped<u64> = Scoped::new();
+    static CURRENT_REQUEST_ID: Scoped<u64> = const {Scoped::new()};
 }
 
 /// A simple logging function that includes the current request ID if set.

@@ -41,7 +41,7 @@ pub(super) struct Scoped<T> {
     ///      and `with` calls directly in its type signature. The lifetime
     ///      management is effectively handled by the `set` method's RAII guard
     ///      and the caller's responsibility to ensure the borrowed `T` is valid.
-   pub inner: Cell<*const T>,
+    pub inner: Cell<*const T>,
 }
 
 impl<T> Scoped<T> {
@@ -50,7 +50,7 @@ impl<T> Scoped<T> {
     /// The internal pointer is initialized to `ptr::null()`, signifying that no
     /// value is currently scoped. This is a `const fn`, allowing it to be used
     /// in static initializers like `thread_local! { static MY_VAR: Scoped<i32> = Scoped::new(); }`.
-   pub const fn new() -> Scoped<T> {
+    pub const fn new() -> Scoped<T> {
         Scoped {
             inner: Cell::new(ptr::null()),
         }
@@ -74,7 +74,7 @@ impl<T> Scoped<T> {
     ///
     /// # Returns
     /// The value returned by the closure `f`.
-   pub fn set<F, R>(&self, t: &T, f: F) -> R
+    pub fn set<F, R>(&self, t: &T, f: F) -> R
     where
         F: FnOnce() -> R,
     {
@@ -147,8 +147,9 @@ impl<T> Scoped<T> {
     /// 3. The `Reset` guard in `set` ensures the pointer is either valid or restored
     ///    to its previous state (which could also be a valid pointer from an outer
     ///    `set` call, or null).
+    ///
     /// Therefore, a non-null `val_ptr` is assumed to point to a valid `T`.
-   pub fn with<F, R>(&self, f: F) -> R
+    pub fn with<F, R>(&self, f: F) -> R
     where
         F: FnOnce(Option<&T>) -> R,
     {
